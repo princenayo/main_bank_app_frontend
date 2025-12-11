@@ -34,13 +34,13 @@ jobs:
 
     - name: Log in to ECR with short-lived credentials
       run: |
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ vars.ECR_REPO }}
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 514246414247.dkr.ecr.us-east-1.amazonaws.com
   
     - name: Tag Docker image
-      run: docker tag bank-app-frontend:latest ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
+      run: docker tag bank-frontend:latest 514246414247.dkr.ecr.us-east-1.amazonaws.com/bank-frontend:latest
     
     - name: Push image to ECR
-      run: docker push ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
+      run: docker push 514246414247.dkr.ecr.us-east-1.amazonaws.com/bank-frontend:latest
 
 
     - name: Clean up Docker image locally
